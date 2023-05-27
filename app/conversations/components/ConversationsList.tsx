@@ -38,7 +38,6 @@ const ConversationsList: React.FC<ConversationsListProps> = ({ initialItems }) =
       )}
     >
       <div className="px-5">
-        S
         <div className="flex justify-between mb-4 pt-4">
           <div className="text-2xl font-neutral-800 font-bold">Messages</div>
           <div className="rounded-full p-2 bg-gray-100 text-gray-600 cursor-pointer hover:opacity-75 transition">
@@ -46,7 +45,7 @@ const ConversationsList: React.FC<ConversationsListProps> = ({ initialItems }) =
           </div>
         </div>
         {items.map((item) => (
-          <ConversationBox key={item.id} data={item} selected={conversationId === item.id} />
+          <ConversationBox key={item.id} data={item} select={conversationId === item.id} />
         ))}
       </div>
     </aside>
