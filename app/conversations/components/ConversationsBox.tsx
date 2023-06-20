@@ -13,10 +13,10 @@ import Avatar from "@/app/components/Avatar";
 
 interface ConversationBoxProps {
   data: FullConversationType;
-  select?: boolean;
+  selected?: boolean;
 }
 
-const ConversationBox: React.FC<ConversationBoxProps> = ({ data, select }) => {
+const ConversationBox: React.FC<ConversationBoxProps> = ({ data, selected }) => {
   const otherUser = useOtherUser(data);
   const session = useSession();
   const router = useRouter();
@@ -75,7 +75,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({ data, select }) => {
     transition
     cursor-pointer
     `,
-        select ? "bg-neutral-100" : "bg-white"
+        selected ? "bg-neutral-100" : "bg-white"
       )}
     >
       <Avatar user={otherUser} />
