@@ -1,15 +1,17 @@
 "use client";
 
-import { Fragment, useMemo } from "react";
-import useOtherUser from "@/app/hooks/useOtherUser";
-import { Conversation, User } from "@prisma/client";
-import { format } from "date-fns";
+import { Fragment, useMemo, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import { IoClose, IoTrash } from "react-icons/io5";
+import { Conversation, User } from "@prisma/client";
+import { format } from "date-fns";
+
+import useOtherUser from "@/app/hooks/useOtherUser";
 import Avatar from "@/app/components/Avatar";
+import ConfirmModal from "./ConfirmModal";
 
 interface ProfileDrawerProps {
-  isOpen: boolean;
+  isOpen?: boolean;
   onClose: () => void;
   data: Conversation & {
     users: User[];
@@ -18,6 +20,7 @@ interface ProfileDrawerProps {
 
 const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, data }) => {
   const otherUser = useOtherUser(data);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   const joinedDate = useMemo(() => {
     return format(new Date(otherUser.createdAt), "PP");
@@ -36,7 +39,9 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, data }) 
   }, [data]);
 
   return (
-    <div>
+    <>
+      <ConfirmModal isOpen={confirmOpen} onClose={() => setConfirmOpen(false)}></ConfirmModal>
+
       <Transition.Root show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-50" onClose={onClose}>
           <Transition.Child
@@ -152,7 +157,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, data }) 
                           <div className="text-sm text-gray-500">{statusText}</div>
                           <div className="flex gap-10 my-8">
                             <div
-                              onClick={() => {}}
+                              onClick={() => setConfirmOpen(true)}
                               className="
                               flex
                               flex-col
@@ -199,7 +204,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, data }) 
           </div>
         </Dialog>
       </Transition.Root>
-    </div>
+    </>
   );
 };
 
