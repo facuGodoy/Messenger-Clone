@@ -88,10 +88,10 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose }) => {
               sm:flex-row-reverse
       "
       >
-        <Button disabled={isLoading} danger onClick={onDelete}>
+        <Button type="button" disabled={isLoading} danger onClick={onDelete}>
           Delete
         </Button>
-        <Button disabled={isLoading} secondary onClick={onClose}>
+        <Button type="button" disabled={isLoading} secondary onClick={onClose}>
           Cancel
         </Button>
       </div>

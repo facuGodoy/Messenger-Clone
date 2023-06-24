@@ -10,6 +10,7 @@ import clsx from "clsx";
 import { FullConversationType } from "@/app/types";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import Avatar from "@/app/components/Avatar";
+import AvatarGroup from "@/app/components/AvatarGroup";
 
 interface ConversationBoxProps {
   data: FullConversationType;
@@ -23,7 +24,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({ data, selected }) => 
 
   const handleClick = useCallback(() => {
     router.push(`/conversations/${data.id}`);
-  }, [data.id, router]);
+  }, [data, router]);
 
   const lastMessage = useMemo(() => {
     const messages = data.messages || [];
@@ -54,7 +55,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({ data, selected }) => 
     }
 
     if (lastMessage?.body) {
-      return lastMessage.body;
+      return lastMessage?.body;
     }
 
     return "Started a conversation";
@@ -70,6 +71,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({ data, selected }) => 
     flex
     items-center
     space-x-3
+    p-3
     hover:bg-neutral-100
     rounded-lg
     transition
@@ -78,7 +80,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({ data, selected }) => 
         selected ? "bg-neutral-100" : "bg-white"
       )}
     >
-      <Avatar user={otherUser} />
+      {data.isGroup ? <AvatarGroup users={data.users} /> : <Avatar user={otherUser} />}
       <div className="min-w-0 flex-1">
         <div className="focus:outline-none">
           <div className="flex justify-between items-center mb-1">
