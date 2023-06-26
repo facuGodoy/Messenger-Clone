@@ -129,7 +129,7 @@ const SettingModal: React.FC<SettingModalProps> = ({ isOpen, onClose, currentUse
           gap-x-6
           "
           >
-            <Button type="undefined" disabled={isLoading} secondary onClick={onClose}>
+            <Button type="button" disabled={isLoading} secondary onClick={onClose}>
               Cancel
             </Button>
             <Button type="submit" disabled={isLoading}>
