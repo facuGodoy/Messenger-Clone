@@ -31,7 +31,7 @@ const Select: React.FC<SelectProps> = ({ label, value, onChange, options, disabl
           onChange={onChange}
           isMulti
           options={options}
-          manuPortalTarget={document.body}
+          menuPortalTarget={document.body}
           styles={{
             menuPortal: (base) => ({
               ...base,
