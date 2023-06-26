@@ -7,7 +7,7 @@ interface MessageInputProps {
   id: string;
   type?: string;
   required?: boolean;
-  register?: UseFormRegister<FieldValues>;
+  register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
 }
 
