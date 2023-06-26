@@ -1,23 +1,23 @@
-'use client'
-import clsx from 'clsx';
+import clsx from "clsx";
 
 interface ButtonProps {
-  type: 'button' | 'submit' | 'reset' | 'undefined';
-  fullWidth?: boolean
+  type?: "button" | "submit" | "reset" | undefined;
+  fullWidth?: boolean;
   children?: React.ReactNode;
   onClick?: () => void;
-  secondary?: boolean,
+  secondary?: boolean;
   danger?: boolean;
   disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ type, fullWidth, children, onClick, secondary, danger, disabled}) => {
+const Button: React.FC<ButtonProps> = ({ type = "button", fullWidth, children, onClick, secondary, danger, disabled }) => {
   return (
     <button
       onClick={onClick}
       type={type}
       disabled={disabled}
-      className={clsx(`
+      className={clsx(
+        `
       flex
       justify-center
       rounded-md
@@ -39,5 +39,5 @@ const Button: React.FC<ButtonProps> = ({ type, fullWidth, children, onClick, sec
     </button>
   );
 };
- 
+
 export default Button;
